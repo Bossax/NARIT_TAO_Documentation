@@ -68,3 +68,43 @@ with QT libraries.
 
 ---
 ## Nuvu SDK
+Nuvu Camera SDK is available for. It is easy to use and straightforward. There are modules which give interfaces to the frame grabber, the camera, and in-house processing.
+
+#### Nuvu camera functionalities
+The operations of frame grabber and camera are executed through opaque handles.  Here are fundamental functionalities that the SDK offers.
+Camera initialization and finalization
+A camera is initialized by passing a camera handle pointer to function open. Then this handle will be used by the Nuvu APIs to execute things with the camera. When the program is finished, this handle has to be destroyed or closed.
+Camera operation
+Processing context setup
+For each digitizer mode (CCD and EM CCD) includes two options of processing mode to improve image quality. First, the linear mode takes closed-shutter frames to be used to subtracted out from the desired images to discard artifacts. Second, the photon counting mode enhance imagery in extremely-low light conditions. It eradicates excess noise factor (ENF) as a byproduct of the electron-multiplying process. Setting up processing context is done through processing context handle.
+
+### Camera parameters
+The table below lists basic parameters of the camera.
+
+<p align="center">
+
+![alt text](./fig/nuvu_param_table.JPG)
+
+</p>
+
+#### Temperature
+The Nuvu camera has specific safety procedure regarding temperature. The camera’s CCD is cooled down when operating to a certain degree. A watchdog process that constantly checks in the CCD temperature is necessary to ensure safety of operation,
+
+#### Gains
+There are some terminologies; EM gain, analog, gain, and analog offset. The EM gain (if enabled) is applied right after electrons are produced from incident photons. The electrons are enhanced in terms of number. The enhanced electron distribution across the detector then is converted into electrical pulses before digitization. The pixilation process follows. If analog gain is enabled, the gain is applied to the entire digitized image. The analog offset comes at the last step which adds a constant to all of the pixels identically.
+
+#### Save and Load Parameters
+There functions that calls callbacks when save, write, and load processing context, camera configuration, and images.
+
+#### Image acquisition
+1.	Shutter is opened
+2.	*PrepareAcquisition()*: Create image buffers and prepare the frame grabber for acquisition. This stage also determines the number of images taken and the mode of acquisition (continuous)
+3.	*BeginAcquisiotion()*: Start the acquisition. The acquisition process is separated into a new thread and runs in the background
+4.	Image read loop: This is a loop to read image data from image buffers. The parameters that control the sample rate are set in the previous step.
+5.	*StartSaveAcquisition()*: Another method of retrieving  images is to run a separate thread to read image data from the buffers and save images in a grouped file automatically.
+6.	Abort(): Abort image acquisition
+7.	Shutter is closed
+
+![alt text](./fig/image_acquisition_loop.PNG)
+
+Go to [TAO_NARIT/src/Nuvu_example](https://github.com/Bossax/TAO_NARIT/tree/main/src/Nuvu_example) for C lang examples.

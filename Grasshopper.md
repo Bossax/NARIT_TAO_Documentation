@@ -1,4 +1,4 @@
-# Spinnaker API
+# Spinnaker SDK
 
 Grasshopper’s Spinnaker SDK is an extension of GenICam API. Some spinnaker APIs are wrappers of GenICam APIs that provide easy-to-use functions. The software is divided into GenICam which is a generic interface to camera’s functionalities and GenTL which is a generic Transport Layer Interface dealing with data transfer and device communication.
 
@@ -8,14 +8,16 @@ Most of the camera’s parameters and functionalities can be access through the 
 
 ![alt text](./fig/Nodemap_Spinnaker.png)
 
+To access to nodes not included in Spinnaker SDK, refer to [GenICam Standard Features Naming Convention](https://www.emva.org/wp-content/uploads/GenICam_SFNC_2_3.pdf) document.
+
 ## Grasshopper functionalities
 Here are the list of grasshopper’s functionalities and parameters. The grouping follows the structure of TAO camera operations as close as possible
 
 ### Basic camera initialization and finalization
-A system singleton is to be created first. This node is the origin of the other nodes down the hierarchy. Then, a camera list can be obtained from the system node. We can enumerate through the list to get the ID numbers of all cameras attached to the system. From that, we can instantiate a GenICam camera handle which presents a specific camera and will be used for the rest of the operation.  When a camera is no longer in use, the camera handle and the system singleton have to be destroyed.
+A system singleton is to be created first. This node is the origin of the other nodes down the hierarchy. Then, a camera list can be obtained from the system node. We can enumerate through the list to get the ID numbers of all cameras attached to the system. From that, we can instantiate a GenICam camera handle which represents a specific camera and will be used for the rest of the operation.  When a camera is no longer in use, the camera handle and the system singleton have to be destroyed.
 
 ### Camera operations
-In the first step, the camera needs initializing. After that, a camera nodemap handle has to be obtained. The nodemap handle is a gateway to camera parameters. To send a command to a camera to perform specific task such as image acquisition, there are Spinnaker APIs which takes in the camera handle and perform the task in a single command.
+In the first step, the camera needs initializing. After that, a camera nodemap handle has to be obtained. The nodemap handle is a gateway to camera parameters. To send a command to a camera to perform specific task such as image acquisition, there are Spinnaker APIs which takes in the camera handle and perform the task in a single command. An alternative is to use a command node in GenICam APIs.
 
 ### Camera parameters
  To access to camera parameters, node handles have to be obtained to provide interfaces to the node values. These handles can be used to get, set, reset values of the nodes or to access to other nodes via enumerating. The list of the cameras parameters is shown in the below table.
@@ -40,3 +42,7 @@ After the image data is processed (eg. converted and saved), the image handle ha
 The API destroys the buffers and the buffer pools. However, the data stream is still open until the camera is de-initialized.
 
 ![alt text](./fig/Acquisition_API_Map.png)
+
+**Note**: Alternatively, these operations can be executed through command nodes using *spinCommandExecute* function.
+
+Go to [TAO_NARIT/src/Grasshopper_example](https://github.com/Bossax/TAO_NARIT/tree/main/src/Grasshopper_example) for C lang examples.
