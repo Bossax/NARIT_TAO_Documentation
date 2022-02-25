@@ -13,8 +13,12 @@ This documentation provide an overview and details of a software architecure of
 
 [TAO_NARIT](https://github.com/Bossax/TAO_NARIT)
 --
-This repository provides examples of cameras' APIs and how to wrap them with TAO architecture.
+This repository provides examples of cameras' APIs and how to wrap them with TAO architecture of devices in AO bench (Nuvu and Grasshopper).
+This repository also contains source code of Nuvu GUI program.
 
+[NARIT_HDC](https://github.com/Bossax/NARIT_HDC)
+--
+This repository provides examples of a BMC Deformable Mirror and an FLI camera in the EvWaCo testbed bench.
 
 [SpinnakerCameras.jl](https://github.com/Bossax/SpinnakerCameras.jl)
 --
