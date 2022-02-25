@@ -23,3 +23,9 @@ This repository aims to provide a user-friendly interface to control a Grasshopp
 [Phase plate](./PhasePlate.md)
 --
 Explain how to wrap Lexitek APIs with MATLAB and compose mex files. Basic workflow.
+
+
+Manuals of most AO-related devices can be found in NextCloud
+EvWaCo prototype > Adaptive Optics > Manuals
+
+Some SDKs are available online. Some are sent privately in emails.
