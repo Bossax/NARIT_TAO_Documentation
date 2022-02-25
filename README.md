@@ -16,7 +16,7 @@ This documentation provide an overview and details of a software architecure of
 This repository provides examples of cameras' APIs and how to wrap them with TAO architecture.
 
 
-[SpinnakerCameras.jl](https://github.com/Bossax/SpinnakerCameras.jl/tree/cameraServer)
+[SpinnakerCameras.jl](https://github.com/Bossax/SpinnakerCameras.jl)
 --
 This repository aims to provide a user-friendly interface to control a Grasshopper camera in *Julia langauge*.
 
